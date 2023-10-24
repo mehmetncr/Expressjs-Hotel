@@ -8,21 +8,20 @@ const UserSchema = new Mongoose.Schema({
   },
   name: {
     type: String,
-    unique: true,
     required: true,
   },
   surName: {
     type: String,
-    unique: true,
     required: true,
   },
   password: {
     type: String,
-    minlength: 6,
+    minlength: 3,
     required: true,
   },
   eMail: {
     type: String,
+    unique: true,
     required: true,
   },
 })

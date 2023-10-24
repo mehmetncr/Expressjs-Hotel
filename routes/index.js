@@ -9,9 +9,6 @@ router.get('/', (req, res, next)=> {
 });
 router.get('/rooms',roomController.GetRooms);
 
-router.get('/login', (req, res, next)=> {
-  res.render('login', { title: 'Express' });
-});
 router.get('/contact', (req, res, next)=> {
   res.render('contact', { title: 'Express' });
 });

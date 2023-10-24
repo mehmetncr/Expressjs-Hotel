@@ -2,7 +2,7 @@ extends layout
 block content
     .container-xxl.bg-white.p-0
 
-    .container.page-header.mb-5.p-0(style='background-image: url(hotel/img/carousel-1.jpg);')
+    .container.page-header.mb-5.p-0(style='background-image: url(../hotel/img/carousel-1.jpg);')
         .container-fluid.page-header-inner.py-5
           .container.text-center.pb-5
             h1.display-3.text-white.mb-3.animated.slideInDown Login
@@ -19,17 +19,19 @@ block content
         .col-md-4
         .col-md-4
             .wow.fadeInUp(data-wow-delay='0.2s')
-            form
+            if error
+              p(style="color: red;") #{error}
+            form(action='/login' method='POST')
                 .row.g-12
                 .col-md-12
                     .form-floating
                     label(for='name') EMail
-                    input#name.form-control(type='text' )
+                    input#name.form-control(type='text' name='username' )
                     
                 .col-md-12
                     .form-floating
                     label(for='email') Şifre
-                    input#email.form-control(type='password')
+                    input#email.form-control(type='password' name='pass')
         
             
                 .col-6.mt-3.text-left
