@@ -42,7 +42,6 @@ exports.getLogin=(req,res)=>{
 
 exports.postLogin=(req,res)=>{
   const { username, pass } = req.body;
-  console.log(username,pass);
   User.findOne({userName: username})
   .then(user => {
     if (!user) {

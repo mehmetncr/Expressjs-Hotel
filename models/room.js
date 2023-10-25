@@ -5,7 +5,7 @@ const Schema= mongoose.Schema
 const RoomSchema=new Schema({
     Category: String,
     Price: String,
-    bad: Number,
+    bad: String,
     bathroom : String,
     ImgUrl:String,
     IsAvable:Boolean,

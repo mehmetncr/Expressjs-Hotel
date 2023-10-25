@@ -12,32 +12,7 @@ block content
                 li.breadcrumb-item
                   a(href='#') Pages
                 li.breadcrumb-item.text-white.active(aria-current='page') Rooms
-    .container-fluid.booking.pb-5.wow.fadeIn(data-wow-delay='0.1s')
-        .container
-          .bg-white.shadow(style='padding: 35px;')
-            .row.g-2
-              .col-md-10
-                .row.g-2
-                  .col-md-3
-                    #date1.date(data-target-input='nearest')
-                      input.form-control.datetimepicker-input(type='text' placeholder='Check in' data-target='#date1' data-toggle='datetimepicker')
-                  .col-md-3
-                    #date2.date(data-target-input='nearest')
-                      input.form-control.datetimepicker-input(type='text' placeholder='Check out' data-target='#date2' data-toggle='datetimepicker')
-                  .col-md-3
-                    select.form-select
-                      option(selected='') Adult
-                      option(value='1') Adult 1
-                      option(value='2') Adult 2
-                      option(value='3') Adult 3
-                  .col-md-3
-                    select.form-select
-                      option(selected='') Child
-                      option(value='1') Child 1
-                      option(value='2') Child 2
-                      option(value='3') Child 3
-              .col-md-2
-                button.btn.btn-primary.w-100 Submit
+    include includes/booking
     .container-xxl.py-5
         .container
           .text-center.wow.fadeInUp(data-wow-delay='0.1s')
