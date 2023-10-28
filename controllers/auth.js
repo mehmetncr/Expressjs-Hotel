@@ -3,6 +3,29 @@ const session = require('express-session');
 const bcrypt = require("bcryptjs")
 
 const User = require('../models/user')
+const Rent = require('../models/rent')
+const Room = require('../models/room')
+
+
+exports.getProfile = (req, res) => {   
+  
+    if ( req.session.loggedIn) {   
+      Rent.find({ userId: req.session.user._id })
+      .populate('roomId')
+      .then(rents => {    
+        rents.reverse();
+        res.render('profile', { title: 'Profilim', rents: rents });
+      })
+      .catch((err)=>{
+          console.log(err);
+      })
+      }else{
+          res.redirect('/login')
+      }
+}
+
+
+
 
 
 exports.getRegister=(req,res)=>{    
@@ -51,6 +74,8 @@ exports.postLogin=(req,res)=>{
       .then(result=> {
         if (result) {
           req.session.loggedIn=true;
+          req.session.user=user;
+          req.session.save()
           console.log("result");
           res.redirect('/');
         }else{
@@ -68,10 +93,9 @@ exports.postLogin=(req,res)=>{
 }
 
 
-exports.checkAuth=(req,res,next)=> {
-  if (req.session.loggedIn) {
-    next();
-  }else{
-    res.redirect('/login');
+exports.getLogout=(req,res,next)=> {
+
+  req.session.destroy();
+    res.redirect('/');
   }
-  }
+ 

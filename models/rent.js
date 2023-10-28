@@ -3,12 +3,18 @@ const Schema= mongoose.Schema
 
 //obje tanımlanır
 const RentSchema=new Schema({
-    roomId:String,
+   
     userId:String,
     startDate:Date,
     endDate:Date,
     price:Number,
-    totalPrice:Number,    
+    totalPrice:Number,
+    size:String,
+    roomId:{
+        type:Schema.Types.ObjectId,
+        ref:'room'
+    }
+
 
 })
 

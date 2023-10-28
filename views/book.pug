@@ -1,0 +1,66 @@
+extends layout
+block content
+    .container-xxl.bg-white.p-0
+
+     
+
+
+    
+    .container-xxl.py-5
+        .container
+          .text-center.wow.fadeInUp(data-wow-delay='0.1s')          
+            h1.mb-5
+              span.text-primary.text-uppercase Rezervasyon
+              |  Yap
+        .row.g-4
+           
+              
+            .col-md-6.wow.fadeIn(data-wow-delay='0.1s')
+              .row.g-4       
+                .col-lg-8.col-md-6.wow.fadeInUp(data-wow-delay='0.1s')
+                  .room-item.shadow.rounded.overflow-hidden
+                    .position-relative
+                      img.img-fluid(src='/hotel/img/room-1.jpg' alt='')
+                      small.position-absolute.start-0.top-100.translate-middle-y.bg-primary.text-white.rounded.py-1.px-3.ms-4 $#{room.Price}/Gecelik
+                    .p-4.mt-2
+                      .d-flex.justify-content-between.mb-3
+                        h5.mb-0 #{room.Category}
+                        .ps-2
+                          small.fa.fa-star.text-primary
+                          small.fa.fa-star.text-primary
+                          small.fa.fa-star.text-primary
+                          small.fa.fa-star.text-primary
+                          small.fa.fa-star.text-primary
+                      .d-flex.mb-3
+                        small.border-end.me-3.pe-3
+                          i.fa.fa-bed.text-primary.me-2
+                          | #{room.bad} Yataklı                            
+                        small
+                          i.fa.fa-wifi.text-primary.me-2
+                          | Wifi
+                      p.text-body.mb-3
+                        | Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.
+                      .d-flex.justify-content-between
+                       
+            .col-md-6
+              .wow.fadeInUp(data-wow-delay='0.2s')
+                if error
+                 p.alert.alert-danger.text-center #{error}
+                form(action='/bookRoom' id='myform' method='POST')
+                  .row.g-3
+                    .col-md-6
+                      #date1.date(data-target-input='nearest')
+                        input.form-control.datetimepicker-input(type='text' placeholder='Check in' data-target='#date1' data-toggle='datetimepicker' name='startDate')
+                      input(type='hidden' value=room._id name='id')              
+                    .col-md-6
+                      #date2.date(data-target-input='nearest')
+                        input.form-control.datetimepicker-input(type='text' placeholder='Check out' data-target='#date2' data-toggle='datetimepicker' name='endDate')
+                    .col-12
+                      select.form-select(name='size')
+                        option(selected='') Yetişkin
+                        option(value='1') Yetişkin 1
+                        option(value='2') Yetişkin 2
+                        option(value='3') Yetişkin 3  
+                    
+                    .col-12
+                      button.btn.btn-primary.w-100.py-3(type='submit') Tamamla

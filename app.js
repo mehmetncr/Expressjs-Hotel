@@ -25,9 +25,16 @@ app.set('view engine', 'pug');
 app.use(session({
   secret: 'askjdna34jfna453453faısf53bhu',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: {
+    expires: new Date(253402300799999), 
+  }
 }));
 
+app.use((req,res,next)=>{
+  res.locals.user=req.session.user;
+  next();
+})
 
 app.use(logger('dev'));
 app.use(express.json());

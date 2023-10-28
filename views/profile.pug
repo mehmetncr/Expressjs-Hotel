@@ -1,0 +1,48 @@
+extends layout
+block content
+    .container-xxl.bg-white.p-0         
+
+    .container-xxl.py-5
+        .container
+            .text-center.wow.fadeInUp(data-wow-delay='0.1s')
+                h6.section-title.text-center.text-primary.text-uppercase Rezervasyon
+                h1.mb-5 Tüm                  
+                    span.text-primary.text-uppercase Rezervasyonlar
+            .row.g-4
+                if rents.length<1
+                    p.text-center.alert.alert-danger.text-uppercase Kayıtlı Rezervasyon yok
+                else 
+                    each rent in rents
+                        .col-lg-4.col-md-6.wow.fadeInUp(data-wow-delay='0.1s')
+                            .room-item.shadow.rounded.overflow-hidden
+                                .position-relative
+                                    img.img-fluid(src='/hotel/img/room-1.jpg' alt='')
+                                    small.position-absolute.start-0.top-100.translate-middle-y.bg-primary.text-white.rounded.py-1.px-3.ms-4 ₺#{rent.roomId.Price}/Gecelik
+                                .p-4.mt-2
+                                    .d-flex.justify-content-between.mb-3
+                                        h5.mb-0 #{rent.roomId.Category}
+                                        .ps-2
+                                            | #{rent.size} Kişi Toplam : #{rent.totalPrice} TL
+                                    .d-flex.mb-3
+                                        small.border-end.me-3.pe-3
+                                            i.fa.fa-bed.text-primary.me-2
+                                            | 3 Bed
+                                        small.border-end.me-3.pe-3
+                                            i.fa.fa-bath.text-primary.me-2
+                                            | 2 Bath
+                                        small
+                                            i.fa.fa-wifi.text-primary.me-2
+                                            | Wifi
+                                    p.text-body.mb-3
+                                        | Giriş Tarihi : #{rent.startDate.toLocaleDateString()}
+                                    hr
+                                    p.text-body.mb-3
+                                        | Çıkış Tarihi :  #{rent.endDate.toLocaleDateString()}
+                                    .d-flex.justify-content-between
+                                        - var today = new Date();
+                                        - var startDate = new Date(rent.startDate);
+                                        if (startDate > today)
+                                            a.btn.btn-sm.btn-danger.rounded.py-2.px-4(href='deleteRent/'+rent._id) İptal
+                                        else 
+                                            a.btn.btn-sm.btn-success.rounded.py-2.px-4(href='bookRoom/'+rent.roomId._id) Yeniden Rezervasyon
+

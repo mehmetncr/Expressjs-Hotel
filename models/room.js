@@ -9,6 +9,11 @@ const RoomSchema=new Schema({
     bathroom : String,
     ImgUrl:String,
     IsAvable:Boolean,
+    Rents:[{
+        type: Schema.Types.ObjectId,
+        ref:'rent'
+    }]
+
 
 })
 
